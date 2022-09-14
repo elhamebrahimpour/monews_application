@@ -281,10 +281,13 @@ class _NewsScreenState extends State<NewsScreen> {
                 height: 24,
               ),
               Spacer(),
-              Image.asset(
-                'images/icon_arrow_right.png',
-                width: 24,
-                height: 24,
+              InkWell(
+                onTap: () => Navigator.of(context).pop(),
+                child: Image.asset(
+                  'images/icon_arrow_right.png',
+                  width: 24,
+                  height: 24,
+                ),
               ),
             ],
           ),

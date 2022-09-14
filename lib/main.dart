@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monews_application/constants/color_constants.dart';
-import 'package:monews_application/screens/home_screen.dart';
+import 'package:monews_application/screens/main_screen.dart';
 
 void main() {
   runApp(Application());
@@ -22,7 +22,7 @@ class Application extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: MainScreen(),
     );
   }
 }
