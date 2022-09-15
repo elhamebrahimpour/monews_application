@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monews_application/constants/color_constants.dart';
+import 'package:monews_application/constants/list_contants.dart';
+import 'package:monews_application/model/news.dart';
 import 'package:monews_application/screens/news_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  _getDummyList(),
+                  _getFollowingDummyList(),
                   _getDummyList(),
                 ],
               ),
@@ -47,6 +49,46 @@ class _HomeScreenState extends State<HomeScreen>
           ],
         ),
       ),
+    );
+  }
+
+  Widget _getFollowingDummyList() {
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding:
+                const EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 22),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'مشاهده بیشتر',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline2!
+                      .copyWith(color: mainRed, fontSize: 12.0),
+                ),
+                Text(
+                  'خبرهایی که علاقه داری',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline2!
+                      .copyWith(color: mainBlack),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            ((context, index) {
+              return _getFavoriteNews(index);
+            }),
+            childCount: 2,
+          ),
+        ),
+      ],
     );
   }
 
@@ -228,14 +270,15 @@ class _HomeScreenState extends State<HomeScreen>
           scrollDirection: Axis.horizontal,
           itemCount: 4,
           itemBuilder: ((context, index) {
-            return _getHotNewsContainer();
+            return _getHotNewsContainer(getHotNewsList()[index], index);
           }),
         ),
       ),
     );
   }
 
-  Widget _getHotNewsContainer() {
+  Widget _getHotNewsContainer(News? news, int index) {
+    news = getHotNewsList()[index];
     return InkWell(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
@@ -263,14 +306,14 @@ class _HomeScreenState extends State<HomeScreen>
                       borderRadius: BorderRadius.circular(20),
                       child: FittedBox(
                         fit: BoxFit.cover,
-                        child: Image.asset('images/asset1.png'),
+                        child: Image.asset('images/${news.image}.png'),
                       ),
                     ),
                   ),
                   Positioned(
                     top: 10,
                     right: 10,
-                    child: Image.asset('images/group1.png'),
+                    child: Image.asset('images/${news.Grouping}.png'),
                   )
                 ],
               ),
@@ -307,7 +350,7 @@ class _HomeScreenState extends State<HomeScreen>
               child: Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: Text(
-                  'پــاسـخ منـفـی پــورتـــو بـه چلـسـی بـرای جذب طارمی با طعم تهدید!',
+                  news.title,
                   textAlign: TextAlign.justify,
                   textDirection: TextDirection.rtl,
                   style: Theme.of(context)
@@ -324,12 +367,12 @@ class _HomeScreenState extends State<HomeScreen>
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Image.asset('images/ellipse1.png'),
+                    Image.asset('images/${news.newsAgencyIcon}.png'),
                     SizedBox(
                       width: 5,
                     ),
                     Text(
-                      'خبرگذاری آخرین خبر',
+                      news.newsAgencyName,
                       style: Theme.of(context)
                           .textTheme
                           .headline2!

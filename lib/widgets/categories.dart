@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:monews_application/constants/color_constants.dart';
+import 'package:monews_application/constants/list_contants.dart';
 
 class CategoriesList extends StatelessWidget {
   const CategoriesList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<String> category = [
-      'همه',
-      'جهان',
-      'ورزش',
-      'تکنولوژی',
-      'علم و دانش'
-    ];
     return SizedBox(
       height: 32,
       child: Padding(
         padding: const EdgeInsets.only(left: 8, right: 24),
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: category.length,
+          itemCount: categoryList.length,
           itemBuilder: ((context, index) => index == 0
-              ? _getAllContainer(category[index], context)
-              : _getCategoryContainer(category[index], context)),
+              ? _getAllContainer(categoryList[index], context)
+              : _getCategoryContainer(categoryList[index], context)),
         ),
       ),
     );

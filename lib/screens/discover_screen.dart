@@ -16,33 +16,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backColor,
-      appBar: AppBar(
-        backgroundColor: backColor,
-        elevation: 0,
-        title: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Image.asset(
-              'images/icon_search.png',
-              width: 24,
-              height: 24,
-            ),
-            SizedBox(
-              width: 22,
-            ),
-            Image.asset(
-              'images/icon_filter_edit.png',
-              width: 24,
-              height: 24,
-            ),
-            SizedBox(
-              width: 88,
-            ),
-            Image.asset('images/icon_logo.png'),
-          ],
-        ),
-        centerTitle: true,
-      ),
+      appBar: _getAppbar(),
       body: SafeArea(
         child: Stack(
           alignment: AlignmentDirectional.bottomCenter,
@@ -70,6 +44,36 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  AppBar _getAppbar() {
+    return AppBar(
+      backgroundColor: backColor,
+      elevation: 0,
+      title: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Image.asset(
+            'images/icon_search.png',
+            width: 24,
+            height: 24,
+          ),
+          SizedBox(
+            width: 22,
+          ),
+          Image.asset(
+            'images/icon_filter_edit.png',
+            width: 24,
+            height: 24,
+          ),
+          SizedBox(
+            width: 88,
+          ),
+          Image.asset('images/icon_logo.png'),
+        ],
+      ),
+      centerTitle: true,
     );
   }
 
