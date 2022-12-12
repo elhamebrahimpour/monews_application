@@ -1,6 +1,8 @@
 # monews_application
 
-A new Flutter project.
+* MoNews
+
+![monews](https://user-images.githubusercontent.com/94855499/207091539-6aafbada-3eca-4e08-989d-26161be3176e.jpg)
 
 ## Getting Started
 
